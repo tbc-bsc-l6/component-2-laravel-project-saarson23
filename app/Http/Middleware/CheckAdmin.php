@@ -15,6 +15,11 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+       // return $next($request);
+       if (!auth()->check() || !auth()->user()->isAdmin()) {
+        abort(403, 'Unauthorized access');
+    }
+
+    return $next($request);
     }
 }
