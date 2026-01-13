@@ -24,6 +24,28 @@
 
             {{-- Body --}}
             <div class="card-body px-4 pb-4">
+                
+                {{-- Search --}}
+                <form action="{{ route('admin.modules.index') }}" method="GET" class="mb-4">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bg-white border-end-0 text-muted">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control border-start-0 ps-0"
+                            placeholder="Search by module name..."
+                            value="{{ request('search') }}"
+                        >
+                        <button class="btn btn-primary" type="submit">Search</button>
+                        
+                        @if(request('search'))
+                            <a href="{{ route('admin.modules.index') }}" class="btn btn-outline-secondary">Clear</a>
+                        @endif
+                    </div>
+                </form>
+
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead class="table-light text-uppercase small">

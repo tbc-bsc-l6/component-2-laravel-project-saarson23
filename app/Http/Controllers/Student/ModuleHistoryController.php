@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ModuleHistoryController extends Controller
 {
-    //
+    
     public function index()
     {
         $user = Auth::user();

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TeacherDashboardController extends Controller
 {
-    //
+    
     public function index()
     {
         $teacher = Auth::user();

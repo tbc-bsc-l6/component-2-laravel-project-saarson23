@@ -76,9 +76,32 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="fw-semibold mb-0">
-                    Students
-                </h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-semibold mb-0">
+                        Students
+                    </h5>
+                    
+                    {{-- Search Form --}}
+                    <form action="{{ route('teacher.modules.show', $module) }}" method="GET" class="d-flex gap-2">
+                         <div class="input-group input-group-sm">
+                            <input
+                                type="text"
+                                name="search"
+                                class="form-control"
+                                placeholder="Search students..."
+                                value="{{ request('search') }}"
+                            >
+                            <button class="btn btn-outline-primary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        @if(request('search'))
+                            <a href="{{ route('teacher.modules.show', $module) }}" class="btn btn-sm btn-outline-secondary d-flex align-items-center">
+                                <i class="bi bi-x-circle"></i>
+                            </a>
+                        @endif
+                    </form>
+                </div>
             </div>
 
             <div class="card-body p-0">

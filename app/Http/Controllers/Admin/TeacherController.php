@@ -26,6 +26,13 @@ class TeacherController extends Controller
             });
         }
 
+        // Filter by Module (New)
+        if ($request->has('module_id') && $request->module_id != '') {
+             $query->whereHas('teacherModules', function($q) use ($request) {
+                 $q->where('module_id', $request->module_id);
+             });
+        }
+
         $teachers = $query->whereHas('role', function($q) {
             $q->where('role', 'teacher');
         })->get();

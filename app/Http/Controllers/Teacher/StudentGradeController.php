@@ -9,9 +9,10 @@ use App\Models\Enrollment;
 use App\Models\UserRole;
 use Illuminate\Support\Facades\Auth;
 
+
 class StudentGradeController extends Controller
 {
-    //
+    
     public function update(Request $request, Module $module, Enrollment $enrollment)
     {
         $teacher = Auth::user();

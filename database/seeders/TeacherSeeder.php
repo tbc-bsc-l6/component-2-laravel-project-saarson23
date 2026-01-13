@@ -21,6 +21,13 @@ class TeacherSeeder extends Seeder
             ['name' => 'Alice Johnson', 'email' => 'Alice.johnson@teacher.college.edu'],
             ['name' => 'Robert Smith', 'email' => 'Robert.smith@teacher.college.edu'],
             ['name' => 'Emily Davis', 'email' => 'Emily.davis@teacher.college.edu'],
+            ['name' => 'Michael Brown', 'email' => 'Michael.brown@teacher.college.edu'],
+            ['name' => 'Sarah Wilson', 'email' => 'Sarah.wilson@teacher.college.edu'],
+            ['name' => 'David Miller', 'email' => 'David.miller@teacher.college.edu'],
+            ['name' => 'Jennifer Taylor', 'email' => 'Jennifer.taylor@teacher.college.edu'],
+            ['name' => 'James Anderson', 'email' => 'James.anderson@teacher.college.edu'],
+            ['name' => 'Linda Thomas', 'email' => 'Linda.thomas@teacher.college.edu'],
+            ['name' => 'Christopher Martinez', 'email' => 'Christopher.martinez@teacher.college.edu'],
         ];
 
         foreach ($teachers as $teacher) {

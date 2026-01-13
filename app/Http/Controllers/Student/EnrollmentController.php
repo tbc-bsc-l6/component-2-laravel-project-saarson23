@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
-    //
+    
     public function index()
     {
         $user = Auth::user();

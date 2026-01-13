@@ -40,4 +40,5 @@ class Enrollment extends Model
     {
         return in_array($this->status, ['pass', 'fail']);
     }
+
 }

@@ -22,6 +22,13 @@ class StudentSeeder extends Seeder
              ['name' => 'Sumni Johnson', 'email' => 'Sumni.johnson@student.college.edu'],
              ['name' => 'Aarson Taylor', 'email' => 'Aarson.taylor@student.college.edu'],
              ['name' => 'Abinesh Taylor', 'email' => 'Abinesh.taylor@student.college.edu'],
+             ['name' => 'Daniel White', 'email' => 'Daniel.white@student.college.edu'],
+             ['name' => 'Elizabeth Harris', 'email' => 'Elizabeth.harris@student.college.edu'],
+             ['name' => 'Matthew Martin', 'email' => 'Matthew.martin@student.college.edu'],
+             ['name' => 'Patricia Thompson', 'email' => 'Patricia.thompson@student.college.edu'],
+             ['name' => 'George Garcia', 'email' => 'George.garcia@student.college.edu'],
+             ['name' => 'Nancy Martinez', 'email' => 'Nancy.martinez@student.college.edu'],
+             ['name' => 'Kevin Robinson', 'email' => 'Kevin.robinson@student.college.edu'],
          ];
  
          foreach ($students as $student) {

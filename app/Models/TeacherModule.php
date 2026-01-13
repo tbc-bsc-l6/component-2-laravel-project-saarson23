@@ -21,3 +21,4 @@ class TeacherModule extends Model
         return $this->belongsTo(Module::class);
     }
 }
+

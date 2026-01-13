@@ -19,29 +19,42 @@
 
             <div class="card-body px-4 pb-4">
 
-                {{-- Search --}}
+                {{-- Search and Filter --}}
                 <form action="{{ route('admin.students.index') }}" method="GET" class="mb-4">
-                    <div class="input-group input-group-lg">
-                        <input
-                            type="text"
-                            name="search"
-                            class="form-control"
-                            placeholder="Search by name, email, or role..."
-                            value="{{ request('search') }}"
-                        >
-
-                        <button class="btn btn-primary" type="submit">
-                            <i class="bi bi-search me-1"></i>
-                            Search
-                        </button>
-
-                        @if(request('search'))
-                            <a href="{{ route('admin.students.index') }}"
-                               class="btn btn-outline-secondary">
-                                Clear
-                            </a>
-                        @endif
+                    <div class="row g-2">
+                        <div class="col-md-8">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-white border-end-0 text-muted">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input
+                                    type="text"
+                                    name="search"
+                                    class="form-control border-start-0 ps-0"
+                                    placeholder="Search by name or email..."
+                                    value="{{ request('search') }}"
+                                >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="role" class="form-select form-select-lg">
+                                <option value="">All Roles</option>
+                                <option value="student" {{ request('role') == 'student' ? 'selected' : '' }}>Student</option>
+                                <option value="old_student" {{ request('role') == 'old_student' ? 'selected' : '' }}>Old Student</option>
+                                <option value="teacher" {{ request('role') == 'teacher' ? 'selected' : '' }}>Teacher</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-primary btn-lg w-100" type="submit">Filter</button>
+                        </div>
                     </div>
+                     @if(request('search') || request('role'))
+                        <div class="mt-2">
+                            <a href="{{ route('admin.students.index') }}" class="text-decoration-none small text-muted">
+                                <i class="bi bi-x-circle me-1"></i>Clear all filters
+                            </a>
+                        </div>
+                    @endif
                 </form>
 
                 {{-- Table --}}
