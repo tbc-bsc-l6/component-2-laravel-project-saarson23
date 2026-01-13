@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Module extends Model
 {
@@ -11,6 +12,20 @@ class Module extends Model
         'slug',
         'is_available',
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($module) {
+            if (!$module->slug) {
+                $module->slug = Str::slug($module->module);
+            }
+        });
+    }
 
     protected $casts = [
         'is_available' => 'boolean',

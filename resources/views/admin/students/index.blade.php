@@ -119,60 +119,6 @@
                                         </button>
                                     </td>
                                 </tr>
-
-                                {{-- Change Role Modal --}}
-                                <div class="modal fade" id="roleModal{{ $student->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content border-0 rounded-4 shadow">
-
-                                            <div class="modal-header border-0">
-                                                <h5 class="modal-title fw-semibold">
-                                                    Change Role
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            <form action="{{ route('admin.students.change-role', $student) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-
-                                                <div class="modal-body">
-                                                    <p class="text-muted small mb-3">
-                                                        Update role for <strong>{{ $student->name }}</strong>
-                                                    </p>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-medium">
-                                                            Select New Role
-                                                        </label>
-
-                                                        <select class="form-select form-select-lg" name="role" required>
-                                                            <option value="student" {{ $student->role->role === 'student' ? 'selected' : '' }}>
-                                                                Student
-                                                            </option>
-                                                            <option value="old_student" {{ $student->role->role === 'old_student' ? 'selected' : '' }}>
-                                                                Old Student
-                                                            </option>
-                                                            <option value="teacher" {{ $student->role->role === 'teacher' ? 'selected' : '' }}>
-                                                                Teacher
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer border-0">
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                        Cancel
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Update Role
-                                                    </button>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
                             @empty
                                 <tr>
                                     <td colspan="6" class="text-center py-5 text-muted">
@@ -185,8 +131,69 @@
                     </table>
                 </div>
 
+                <div class="mt-4">
+                    {{ $students->withQueryString()->links() }}
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
+{{-- Change Role Modals --}}
+@foreach($students as $student)
+    <div class="modal fade" id="roleModal{{ $student->id }}" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow">
+
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-semibold">
+                        Change Role
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="{{ route('admin.students.change-role', $student) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="modal-body">
+                        <p class="text-muted small mb-3">
+                            Update role for <strong>{{ $student->name }}</strong>
+                        </p>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">
+                                Select New Role
+                            </label>
+
+                            <select class="form-select form-select-lg" name="role" required>
+                                <option value="student" {{ $student->role->role === 'student' ? 'selected' : '' }}>
+                                    Student
+                                </option>
+                                <option value="old_student" {{ $student->role->role === 'old_student' ? 'selected' : '' }}>
+                                    Old Student
+                                </option>
+                                <option value="teacher" {{ $student->role->role === 'teacher' ? 'selected' : '' }}>
+                                    Teacher
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Update Role
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+@endforeach
+
 @endsection

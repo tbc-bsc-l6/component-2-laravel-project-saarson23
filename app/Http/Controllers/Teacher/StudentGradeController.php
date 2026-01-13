@@ -49,7 +49,7 @@ class StudentGradeController extends Controller
             $hasCompletedModules = $student->completedEnrollments()->count() > 0;
             
             if ($hasCompletedModules) {
-                $oldStudentRole = UserRole::where('role', 'old_student')->first();
+                $oldStudentRole = UserRole::firstOrCreate(['role' => 'old_student']);
                 $student->update([
                     'user_role_id' => $oldStudentRole->id
                 ]);

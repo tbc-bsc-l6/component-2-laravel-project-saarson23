@@ -36,8 +36,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $studentRole = UserRole::where('role', 'student')->first();
-        $roleId = $studentRole ? $studentRole->id : 3; // Default to 3 if not found
+        $studentRole = UserRole::firstOrCreate(['role' => 'student']);
+        $roleId = $studentRole->id;
 
         $user = User::create([
             'name' => $request->name,
@@ -50,6 +50,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        return redirect(route('dashboard', absolute: false));
     }
 }

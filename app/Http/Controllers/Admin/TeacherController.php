@@ -35,7 +35,7 @@ class TeacherController extends Controller
 
         $teachers = $query->whereHas('role', function($q) {
             $q->where('role', 'teacher');
-        })->get();
+        })->paginate(10);
 
         $modules = Module::all();
 

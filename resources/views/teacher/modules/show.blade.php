@@ -163,58 +163,7 @@
                         </div>
                     </div>
 
-                    {{-- Grade Modal --}}
-                    @if($enrollment->status === 'enrolled')
-                        <div class="modal fade" id="gradeModal{{ $enrollment->id }}" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">
-                                            Grade {{ $enrollment->user->name }}
-                                        </h5>
-                                        <button class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-
-                                    <form action="{{ route('teacher.grades.update', [$module, $enrollment]) }}"
-                                          method="POST">
-                                        @csrf
-                                        @method('PATCH')
-
-                                        <div class="modal-body">
-                                            <p class="text-muted">
-                                                Select the final result for this student.
-                                            </p>
-
-                                            <div class="d-grid gap-3">
-                                                <button type="submit"
-                                                        name="status"
-                                                        value="pass"
-                                                        class="btn btn-success btn-lg">
-                                                    <i class="bi bi-check-circle me-1"></i>
-                                                    Pass
-                                                </button>
-
-                                                <button type="submit"
-                                                        name="status"
-                                                        value="fail"
-                                                        class="btn btn-danger btn-lg">
-                                                    <i class="bi bi-x-circle me-1"></i>
-                                                    Fail
-                                                </button>
-                                            </div>
-
-                                            <div class="alert alert-warning mt-3 mb-0">
-                                                <i class="bi bi-exclamation-triangle me-1"></i>
-                                                Grading will complete this module for the student.
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    {{-- Grade Modal Removed from here --}}
                 @empty
                     <div class="p-4 text-center text-muted">
                         <i class="bi bi-info-circle me-1"></i>
@@ -222,8 +171,69 @@
                     </div>
                 @endforelse
             </div>
+            
+            <div class="card-footer bg-white border-top-0 py-3">
+                 {{ $students->withQueryString()->links() }}
+            </div>
         </div>
     </div>
 </div>
+
+</div>
+
+{{-- Grade Modals --}}
+@foreach($students as $enrollment)
+    @if($enrollment->status === 'enrolled')
+        <div class="modal fade" id="gradeModal{{ $enrollment->id }}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Grade {{ $enrollment->user->name }}
+                        </h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <form action="{{ route('teacher.grades.update', [$module, $enrollment]) }}"
+                          method="POST">
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="modal-body">
+                            <p class="text-muted">
+                                Select the final result for this student.
+                            </p>
+
+                            <div class="d-grid gap-3">
+                                <button type="submit"
+                                        name="status"
+                                        value="pass"
+                                        class="btn btn-success btn-lg">
+                                    <i class="bi bi-check-circle me-1"></i>
+                                    Pass
+                                </button>
+
+                                <button type="submit"
+                                        name="status"
+                                        value="fail"
+                                        class="btn btn-danger btn-lg">
+                                    <i class="bi bi-x-circle me-1"></i>
+                                    Fail
+                                </button>
+                            </div>
+
+                            <div class="alert alert-warning mt-3 mb-0">
+                                <i class="bi bi-exclamation-triangle me-1"></i>
+                                Grading will complete this module for the student.
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    @endif
+@endforeach
 
 @endsection

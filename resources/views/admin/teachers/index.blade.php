@@ -175,6 +175,10 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-4">
+            {{ $teachers->withQueryString()->links() }}
+        </div>
     @else
         <div class="card border-0 shadow-sm">
             <div class="card-body text-center py-5">

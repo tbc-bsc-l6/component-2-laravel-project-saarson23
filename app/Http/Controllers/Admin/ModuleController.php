@@ -19,7 +19,7 @@ class ModuleController extends Controller
             $query->where('module', 'like', '%' . $searchTerm . '%');
         }
 
-        $modules = $query->get();
+        $modules = $query->paginate(10);
 
         return view('admin.modules.index', compact('modules'));
     }

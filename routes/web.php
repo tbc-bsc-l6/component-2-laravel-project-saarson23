@@ -15,7 +15,11 @@ use App\Http\Controllers\Student\ModuleHistoryController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('splash');
+
+Route::get('/dashboard', function () {
+    return redirect()->route('home');
+})->name('dashboard');
 
 
 // Redirect after login based on role

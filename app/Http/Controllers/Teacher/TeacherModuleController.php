@@ -33,7 +33,7 @@ class TeacherModuleController extends Controller
             });
         }
 
-        $students = $query->get();
+        $students = $query->paginate(10);
 
         return view('teacher.modules.show', compact('module', 'students'));
     }

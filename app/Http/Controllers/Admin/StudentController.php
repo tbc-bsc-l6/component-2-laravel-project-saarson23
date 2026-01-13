@@ -28,7 +28,7 @@ class StudentController extends Controller
 
         $students = $query->whereHas('role', function($q) {
             $q->whereIn('role', ['student', 'old_student']);
-        })->get();
+        })->paginate(10);
 
         return view('admin.students.index', compact('students'));
     }
@@ -39,7 +39,7 @@ class StudentController extends Controller
             'role' => 'required|in:student,old_student,teacher',
         ]);
 
-        $newRole = UserRole::where('role', $request->role)->first();
+        $newRole = UserRole::firstOrCreate(['role' => $request->role]);
 
         $user->update([
             'user_role_id' => $newRole->id
